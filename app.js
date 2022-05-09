@@ -51,6 +51,10 @@ app.get('/api/users/:id', (req, res) => {
   );
 });
 
+/* Sur la route POST /api/users/, ajoute deux autres champs optionnels : 
+city et language. Ces champs doivent avoir moins de 255 caractères. 
+Ils peuvent être une chaîne de caractères vide ou null.
+*/
 app.post('/api/users', (req, res) => {
   const { email } = req.body;
   const db = connection.promise();
@@ -80,6 +84,11 @@ app.post('/api/users', (req, res) => {
       else res.status(500).send('Error saving the user');
     });
 });
+
+/*
+Sur la route PUT /api/users/:id, valide tous les champs comme sur la route 
+POST /api/users/ users, mais cette fois tous les champs sont optionnels.
+*/
 
 app.put('/api/users/:id', (req, res) => {
   const userId = req.params.id;
